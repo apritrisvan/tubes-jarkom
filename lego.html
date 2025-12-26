@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Apriano Trisvan Yulistira | Jaringan Komputer LEGO Edition</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,400;0,700;0,900;1,900&display=swap"
+      rel="stylesheet"
+    />
+
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              legoRed: "#d00000",
+              legoBlue: "#0055bf",
+              legoYellow: "#ffcf00",
+              legoGreen: "#237841",
+              legoGray: "#a0a5a9",
+              legoBlack: "#1b1b1b",
+            },
+            fontFamily: {
+              lego: ["Kanit", "sans-serif"],
+            },
+          },
+        },
+      };
+    </script>
+
+    <style>
+      :root {
+        --brick-shadow: 4px 4px 0px rgba(0, 0, 0, 0.2);
+        --stud-shadow: inset -2px -2px 4px rgba(0, 0, 0, 0.3),
+          inset 2px 2px 4px rgba(255, 255, 255, 0.4);
+      }
+
+      body {
+        font-family: "Kanit", sans-serif;
+        background-color: #e5e7eb;
+        background-image: radial-gradient(#d1d5db 3px, transparent 3px);
+        background-size: 40px 40px;
+        scroll-behavior: smooth;
+      }
+
+      /* Brick Generation Logic */
+      .lego-brick {
+        position: relative;
+        border: 3px solid rgba(0, 0, 0, 0.15);
+        box-shadow: 8px 8px 0px rgba(0, 0, 0, 0.1);
+        transition: all 0.2s ease;
+      }
+
+      .lego-brick:hover {
+        transform: translate(-2px, -2px);
+        box-shadow: 10px 10px 0px rgba(0, 0, 0, 0.15);
+      }
+
+      /* The Studs (Bulatan LEGO) */
+      .studs-container {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(30px, 1fr));
+        gap: 15px;
+        padding: 10px;
+        opacity: 0.4;
+      }
+
+      .stud {
+        width: 20px;
+        height: 20px;
+        background: inherit;
+        filter: brightness(1.1);
+        border-radius: 50%;
+        box-shadow: var(--stud-shadow);
+        border: 1px solid rgba(0, 0, 0, 0.1);
+      }
+
+      /* Special Text Effect */
+      .lego-text-outline {
+        text-shadow: 3px 3px 0px #000;
+      }
+
+      /* Smooth Floating Animation */
+      @keyframes float {
+        0% {
+          transform: translateY(0px);
+        }
+        50% {
+          transform: translateY(-10px);
+        }
+        100% {
+          transform: translateY(0px);
+        }
+      }
+      .animate-float {
+        animation: float 4s ease-in-out infinite;
+      }
+
+      .brick-shadow-bottom {
+        filter: drop-shadow(0 10px 15px rgba(0, 0, 0, 0.2));
+      }
+    </style>
+  </head>
+  <body class="antialiased">
+    <!-- Top Navigation Bar (LEGO Style) -->
+    <nav
+      class="bg-legoRed p-4 border-b-8 border-black shadow-xl sticky top-0 z-50"
+    >
+      <div class="max-w-7xl mx-auto flex justify-between items-center">
+        <div
+          class="bg-white px-4 py-1 rounded-sm border-2 border-black rotate-[-2deg] shadow-lg"
+        ></div>
+        <div class="hidden md:flex gap-6">
+          <a
+            href="#profil"
+            class="text-white font-bold hover:text-legoYellow transition"
+            >PROFIL</a
+          >
+          <a
+            href="#materi"
+            class="text-white font-bold hover:text-legoYellow transition"
+            >MATERI</a
+          >
+          <a
+            href="#referensi"
+            class="text-white font-bold hover:text-legoYellow transition"
+            >REFERENSI</a
+          >
+        </div>
+      </div>
+    </nav>
+
+    <main class="max-w-6xl mx-auto py-12 px-6">
+      <!-- HERO SECTION: THE MASTER BUILDER -->
+      <section
+        id="profil"
+        class="grid lg:grid-cols-12 gap-8 items-center mb-24"
+      >
+        <div class="lg:col-span-7">
+          <div class="lego-brick bg-legoYellow p-8 rounded-2xl mb-6">
+            <!-- Studs decorations -->
+            <div class="studs-container">
+              <div class="stud"></div>
+              <div class="stud"></div>
+              <div class="stud"></div>
+              <div class="stud"></div>
+            </div>
+
+            <h2 class="italic text-legoRed font-black text-2xl mb-2">
+              SISTEM INFORMASI - D3
+            </h2>
+            <h1
+              class="text-5xl md:text-7xl font-black text-legoBlack uppercase tracking-tighter mb-6 italic"
+            >
+              APRIANO
+              <span class="text-white lego-text-outline">TRISVAN</span>
+              YULISTIRA
+            </h1>
+
+            <div class="flex flex-wrap gap-4">
+              <div
+                class="bg-legoBlue text-white px-6 py-3 rounded-xl border-4 border-black font-bold shadow-lg"
+              >
+                NIM: 607012500077
+              </div>
+              <div
+                class="bg-legoGreen text-white px-6 py-3 rounded-xl border-4 border-black font-bold shadow-lg"
+              >
+                KELAS: D3SI-49-04
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="bg-white border-4 border-black p-6 rounded-2xl shadow-xl rotate-[1deg]"
+          >
+            <p class="text-xl font-bold text-gray-700 italic">
+              "Hidup itu seperti LEGO, disusun satu-satu akan menjadi sebuah
+              kesatuan"
+            </p>
+          </div>
+        </div>
+
+        <!-- Profile Picture Box -->
+        <div class="lg:col-span-5 flex justify-center">
+          <div class="relative animate-float">
+            <!-- The LEGO Box Frame -->
+            <div
+              class="w-80 h-96 bg-white border-8 border-black p-4 rounded-3xl shadow-2xl relative overflow-hidden"
+            >
+              <div
+                class="absolute top-0 left-0 w-full h-12 bg-legoRed border-b-4 border-black flex items-center justify-center"
+              >
+                <span
+                  class="text-white font-black text-sm tracking-widest uppercase italic"
+                  >PROFILE PHOTO</span
+                >
+              </div>
+              <div
+                class="mt-10 w-full h-full bg-gray-100 rounded-xl overflow-hidden border-4 border-black group"
+              >
+                <!-- FOTO USER -->
+                <img
+                  src="WhatsApp Image 2025-12-26 at 19.45.10.jpeg"
+                  alt="Apriano Trisvan"
+                  class="w-full h-full object-cover transition duration-500 group-hover:scale-110"
+                />
+                <div
+                  class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-6"
+                >
+                  >
+                </div>
+              </div>
+            </div>
+            <!-- Small decorative bricks -->
+            <div
+              class="absolute -bottom-4 -left-8 w-20 h-10 bg-legoBlue border-4 border-black rounded shadow-lg"
+            ></div>
+            <div
+              class="absolute -top-4 -right-8 w-16 h-16 bg-legoYellow border-4 border-black rounded-full shadow-lg"
+            ></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CONTENT SECTION: THE TECHNICAL BRICKS -->
+      <section id="materi" class="mb-24">
+        <div class="flex items-center gap-6 mb-12">
+          <div
+            class="w-16 h-16 bg-legoBlue border-4 border-black rounded shadow-lg flex-shrink-0"
+          ></div>
+          <h2
+            class="text-4xl md:text-5xl font-black uppercase italic tracking-tighter"
+          >
+            Penjelasan Perangkat Akhir
+          </h2>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-12">
+          <div class="space-y-8">
+            <div
+              class="lego-brick bg-white p-10 rounded-3xl border-4 border-black relative"
+            >
+              <div
+                class="absolute -top-6 -right-6 w-24 h-24 bg-legoYellow border-4 border-black rounded-full flex items-center justify-center shadow-xl rotate-12"
+              >
+                <span class="text-black font-black text-3x4"
+                  ><strong>SWITCH</strong></span
+                >
+              </div>
+              <h3
+                class="text-3xl font-black text-legoBlue mb-6 uppercase italic"
+              >
+                Apa itu Switch?
+              </h3>
+              <div
+                class="prose prose-xl text-gray-800 font-bold leading-relaxed"
+              >
+                <p class="mb-4">
+                  Dalam dunia
+                  <span class="text-legoRed">Jaringan Komputer</span>, Switch
+                  adalah perangkat perantara cerdas yang bekerja pada Layer 2
+                  (Data Link Layer)
+                </p>
+                <p
+                  class="bg-gray-100 p-4 rounded-xl border-2 border-dashed border-gray-400"
+                >
+                  Berbeda dengan Hub yang mengirim data ke semua orang, Switch
+                  hanya mengirim data ke balok (perangkat) yang spesifik
+                  berdasarkan <strong>MAC Address</strong>.
+                </p>
+              </div>
+            </div>
+
+            <div class="lego-brick bg-legoGreen p-8 rounded-3xl text-white">
+              <h3 class="text-2xl font-black mb-4 uppercase tracking-wider">
+                Fungsi Strategis:
+              </h3>
+              <ul class="space-y-4">
+                <li class="flex gap-4 items-center bg-black/20 p-4 rounded-xl">
+                  <div
+                    class="w-8 h-8 bg-legoYellow rounded-full flex-shrink-0 border-2 border-black"
+                  ></div>
+                  <p class="font-bold uppercase tracking-tight">
+                    Manajemen Alamat MAC Secara Akurat
+                  </p>
+                </li>
+                <li class="flex gap-4 items-center bg-black/20 p-4 rounded-xl">
+                  <div
+                    class="w-8 h-8 bg-legoRed rounded-full flex-shrink-0 border-2 border-black"
+                  ></div>
+                  <p class="font-bold uppercase tracking-tight">
+                    Eliminasi Tabrakan Data (Collision Domain)
+                  </p>
+                </li>
+                <li class="flex gap-4 items-center bg-black/20 p-4 rounded-xl">
+                  <div
+                    class="w-8 h-8 bg-white rounded-full flex-shrink-0 border-2 border-black"
+                  ></div>
+                  <p class="font-bold uppercase tracking-tight">
+                    Optimasi Kecepatan Transfer Data
+                  </p>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Content Right: Visual -->
+          <div class="flex flex-col gap-8">
+            <div
+              class="lego-brick bg-legoGray p-4 rounded-3xl shadow-2xl overflow-hidden"
+            >
+              <div
+                class="bg-white border-4 border-black rounded-2xl overflow-hidden"
+              >
+                <div class="bg-legoBlack p-3 flex gap-2">
+                  <div class="w-3 h-3 bg-legoRed rounded-full"></div>
+                  <div class="w-3 h-3 bg-legoYellow rounded-full"></div>
+                  <div class="w-3 h-3 bg-legoGreen rounded-full"></div>
+                </div>
+                <!-- GAMBAR SWITCH -->
+                <img
+                  src="OIP.webp"
+                  alt="Switch Jaringan"
+                  class="w-auto h-15 grayscale hover:grayscale-0 transition duration-500"
+                />
+              </div>
+              <p
+                class="text-center font-black text-legoBlack mt-4 italic uppercase"
+              >
+                Enterprise Switch
+              </p>
+            </div>
+
+            <div
+              id="referensi"
+              class="lego-brick bg-legoYellow p-6 rounded-2xl border-4 border-black"
+            >
+              <h4 class="font-black text-lg mb-2 uppercase">
+                📖 Sumber Refrensi:
+              </h4>
+              <div
+                class="bg-white/50 p-4 rounded border-2 border-black/20 font-bold text-sm"
+              >
+                Cisco Networking Academy:
+                <em>Introduction to Networks v7.0 (Switching Concepts)</em>.
+                Diakses melalui portal resmi akademik Telkom University 2025.
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- FOOTER: THE BASEPLATE -->
+    <footer
+      class="bg-legoBlack text-white pt-16 pb-8 border-t-8 border-legoRed relative"
+    >
+      <!-- Studs on footer -->
+      <div
+        class="absolute -top-6 left-0 w-full flex justify-around opacity-100"
+      >
+        <div
+          class="w-10 h-10 bg-legoRed rounded-full border-2 border-black"
+        ></div>
+        <div
+          class="w-10 h-10 bg-legoRed rounded-full border-2 border-black"
+        ></div>
+        <div
+          class="w-10 h-10 bg-legoRed rounded-full border-2 border-black"
+        ></div>
+        <div
+          class="w-10 h-10 bg-legoRed rounded-full border-2 border-black"
+        ></div>
+        <div
+          class="w-10 h-10 bg-legoRed rounded-full border-2 border-black"
+        ></div>
+        <div
+          class="w-10 h-10 bg-legoRed rounded-full border-2 border-black"
+        ></div>
+      </div>
+
+      <div class="max-w-6xl mx-auto px-6 text-center">
+        <p class="text-legoGray font-bold mb-10">
+          Tugas Mata Kuliah Jaringan Komputer - 2025
+        </p>
+
+        <div class="flex justify-center gap-4 mb-10">
+          <div
+            class="w-12 h-12 bg-legoRed border-2 border-white rounded shadow-lg hover:scale-110 transition cursor-pointer"
+          ></div>
+          <div
+            class="w-12 h-12 bg-legoBlue border-2 border-white rounded shadow-lg hover:scale-110 transition cursor-pointer"
+          ></div>
+          <div
+            class="w-12 h-12 bg-legoYellow border-2 border-white rounded shadow-lg hover:scale-110 transition cursor-pointer"
+          ></div>
+          <div
+            class="w-12 h-12 bg-legoGreen border-2 border-white rounded shadow-lg hover:scale-110 transition cursor-pointer"
+          ></div>
+        </div>
+
+        <p class="text-sm font-bold opacity-50 uppercase justify-center">
+          © 2025 APRIANO TRISVAN YULISTIRA - D3SI-49-04
+        </p>
+      </div>
+    </footer>
+
+    <!-- Back to Top Button (LEGO Stud) -->
+    <a
+      href="#"
+      class="fixed bottom-8 right-8 w-16 h-16 bg-legoRed rounded-full border-4 border-black flex items-center justify-center shadow-2xl hover:scale-110 active:scale-95 transition z-50"
+    >
+      <svg
+        class="w-8 h-8 text-white"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="4"
+          d="M5 15l7-7 7 7"
+        ></path>
+      </svg>
+    </a>
+  </body>
+</html>
